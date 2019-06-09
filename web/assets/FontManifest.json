@@ -11,7 +11,7 @@
     "family": "HelveticaNeueLight",
     "fonts": [
       {
-        "asset": "fonts/HelveticaNeueLight.ttf"
+        "asset": "../fonts/HelveticaNeueLight.ttf"
       }
     ]
   }

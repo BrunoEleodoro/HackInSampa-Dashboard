@@ -39,6 +39,10 @@ class _NovaRecargaPasso1State extends State<NovaRecargaPasso1> {
           Container(
               child:
                   RightSidePaying(changeStateRightSide: changeStateRightSide)),
+        if (this.whichPage == 2)
+          Container(
+              child:
+              RightSide(changeStateRightSide: changeStateRightSide)),
       ],
     ));
   }
@@ -209,7 +213,7 @@ class _LeftSideState extends State<LeftSide> {
                         return Padding(
                           padding: EdgeInsets.all(6),
                           child: Container(
-                            width: 350,
+                            width: 400,
                             height: 50,
                             child: Card(
                               elevation: 2,
@@ -241,11 +245,16 @@ class _LeftSideState extends State<LeftSide> {
                                       ],
                                     ),
                                   ),
-                                  Center(
-                                      child: Icon(
-                                    Icons.check,
-                                    color: Colors.green,
-                                  ))
+                                  Padding(
+                                    padding: const EdgeInsets.only(right:8.0),
+                                    child: Center(
+                                        child: Icon(
+
+                                      Icons.check,
+                                      size: 35,
+                                      color: Colors.green,
+                                    )),
+                                  )
                                 ],
                               ),
                             ),
@@ -449,6 +458,12 @@ class _RightSidePaying extends State<RightSidePaying> {
 
   _RightSidePaying({this.changeStateRightSide});
 
+  @override
+  void initState() {
+    loadData();
+    super.initState();
+  }
+
   void loadData() async {
     await Future.delayed(Duration(seconds: 3));
     this.changeStateRightSide(2);
@@ -479,6 +494,12 @@ class _RightSidePaying extends State<RightSidePaying> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  Text(
+                    'Aguardando a comunicação com\na máquina de cartão',
+                    style: TextStyle(color: Colors.white, fontSize: 25),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 100,),
                   CircularProgressIndicator()
                 ])));
   }
