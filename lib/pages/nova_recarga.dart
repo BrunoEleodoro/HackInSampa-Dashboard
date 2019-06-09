@@ -1,11 +1,16 @@
 import 'package:flutter_web/material.dart';
 
 class NovaRecargaPage extends StatefulWidget {
+  var nextPage;
+  NovaRecargaPage({this.nextPage});
   @override
-  _NovaRecargaPageState createState() => _NovaRecargaPageState();
+  _NovaRecargaPageState createState() => _NovaRecargaPageState(nextPage: nextPage);
 }
 
 class _NovaRecargaPageState extends State<NovaRecargaPage> {
+  var nextPage;
+  var controllerText = TextEditingController();
+  _NovaRecargaPageState({this.nextPage});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -74,6 +79,12 @@ class _NovaRecargaPageState extends State<NovaRecargaPage> {
                         style: TextStyle(
                           fontSize: 25
                         ),
+                        onEditingComplete: (){
+                          if(controllerText.text.length > 6) {
+                            this.nextPage();
+                          }
+                        },
+                        controller: controllerText,
                         decoration: InputDecoration(
                           labelText: 'Digite o número do cartão'
                         ),

@@ -1,5 +1,6 @@
 import 'package:flutter_web/material.dart';
 import 'pages/nova_recarga.dart';
+import 'pages/recarga_passo1.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,8 +10,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Passe Digital',
       theme: ThemeData(
+        fontFamily: 'HelveticaNeueLight',
         primarySwatch: Colors.orange,
         accentColor: Colors.orange,
       ),
@@ -26,11 +28,28 @@ class BasePage extends StatefulWidget {
 
 class _BasePageState extends State<BasePage> {
   int selectedIndex = 0;
+  int page = 0;
+
+  void nextPage() {
+    this.page = 1;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    var body;
+    if(selectedIndex == 0) {
+      body =  Container(
+          height: 600,
+          child: NovaRecargaPage(
+            nextPage: nextPage,
+          ));
+
+
+    }
     return Scaffold(
-      backgroundColor: Colors.grey[350],
+      backgroundColor: Colors.grey[200],
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -128,10 +147,8 @@ class _BasePageState extends State<BasePage> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 30,
-            ), //
-          (this.selectedIndex == 0) ? Container(height: 600, child: NovaRecargaPage()) : Container()
+//            body
+        NovaRecargaPasso1()
           ],
         ),
       ),
