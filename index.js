@@ -1,8 +1,17 @@
+#var express = require('express');
+#var app = express();
+#
+#app.use(express.static('build'));
+#
+#app.listen(process.env.PORT, () => {
+#    console.log('uhull')
+#})
+
 var express = require('express');
 var app = express();
 
-app.use(express.static('build'));
+//setting middleware
+app.use(express.static(__dirname + 'public')); //Serves resources from public folder
 
-app.listen(process.env.PORT, () => {
-    console.log('uhull')
-})
+
+var server = app.listen(process.env.PORT);
