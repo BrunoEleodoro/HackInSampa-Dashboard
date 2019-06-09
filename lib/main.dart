@@ -19,8 +19,13 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class BasePage extends StatelessWidget {
+class BasePage extends StatefulWidget {
+  @override
+  _BasePageState createState() => _BasePageState();
+}
 
+class _BasePageState extends State<BasePage> {
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +49,8 @@ class BasePage extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             'Passe',
-                            style:
-                                TextStyle(fontSize: 30, color: Color(0XFF15CCEA)),
+                            style: TextStyle(
+                                fontSize: 30, color: Color(0XFF15CCEA)),
                           ),
                           Text('Digital',
                               style: TextStyle(
@@ -55,67 +60,78 @@ class BasePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(left: 50, top:35),
-                    width: 200,
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          'Realizar nova recarga',
-                          style: TextStyle(fontSize: 18,color:  Theme.of(context).colorScheme.primary),
-                        ),
-                        SizedBox(height: 20,),
-                        Divider(
-                          height: 2,
-                          color:  Theme.of(context).colorScheme.primary,
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 50, top:35),
-                    width: 200,
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          'Histórico de recargas',
-                          style: TextStyle(fontSize: 18,color:  Theme.of(context).colorScheme.primary),
-                        ),
-                        SizedBox(height: 20,),
-                        Divider(
-                          height: 2,
-                          color:  Theme.of(context).colorScheme.primary,
-                        )
-                      ],
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Container(
-                      margin: EdgeInsets.only(left: 50, top:35),
-                      width: 200,
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            'Histórico de recargas',
-                            style: TextStyle(fontSize: 18,color:  Theme.of(context).colorScheme.primary),
+                  GestureDetector(
+                      onTap: () {
+                        this.selectedIndex = 0;
+                        setState(() {});
+                      },
+                      child: InkWell(
+                        child: Container(
+                          margin: EdgeInsets.only(left: 50, top: 35),
+                          width: 200,
+                          child: Column(
+                            children: <Widget>[
+                              Text(
+                                'Realizar nova recarga',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: (selectedIndex == 0)
+                                        ? Theme.of(context).colorScheme.primary
+                                        : Colors.black),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Divider(
+                                height: 2,
+                                color: (selectedIndex == 0)
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Colors.black,
+                              )
+                            ],
                           ),
-                          SizedBox(height: 20,),
-                          Divider(
-                            height: 2,
-                            color:  Theme.of(context).colorScheme.primary,
-                          )
-                        ],
+                        ),
+                      )),
+                  GestureDetector(
+                    onTap: () {
+                      this.selectedIndex = 1;
+                      setState(() {});
+                    },
+                    child: InkWell(
+                      child: Container(
+                        margin: EdgeInsets.only(left: 50, top: 35),
+                        width: 200,
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              'Histórico de recargas',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: (selectedIndex == 1)
+                                      ? Theme.of(context).colorScheme.primary
+                                      : Colors.black),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Divider(
+                              height: 2,
+                              color: (selectedIndex == 1)
+                                  ? Theme.of(context).colorScheme.primary
+                                  : Colors.black,
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
             SizedBox(
               height: 30,
-            ),//
-            Container(height : 800,child: NovaRecargaPage())
+            ), //
+          (this.selectedIndex == 0) ? Container(height: 600, child: NovaRecargaPage()) : Container()
           ],
         ),
       ),
